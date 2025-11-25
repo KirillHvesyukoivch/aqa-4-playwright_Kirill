@@ -40,7 +40,5 @@ import { NOTIFICATIONS } from "data/salesPortal/notifications";
         await expect(productsListPage.nameCell(productDataGenerated.name)).toHaveText(productDataGenerated.name);
         await expect(productsListPage.priceCell(productDataGenerated.name)).toHaveText(`$${productDataGenerated.price.toString()}`);
         await expect(productsListPage.manufacturerCell(productDataGenerated.name)).toHaveText(productDataGenerated.manufacturer);
-
     })
-
  });

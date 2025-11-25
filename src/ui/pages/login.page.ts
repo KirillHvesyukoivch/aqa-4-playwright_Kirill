@@ -5,10 +5,8 @@
   //- fillCredentials method
   //- click on login button method
 
-import { Locator } from "@playwright/test";
 import { SalesPortalPage } from "./salesPortal.page.js";
 import { ICredentials } from "data/types/credentials.types.js";
-
 export class LoginPage extends SalesPortalPage {
     readonly emailInput = this.page.locator("#emailinput")
     readonly passwordInput = this.page.locator("#passwordinput");
@@ -19,8 +17,8 @@ export class LoginPage extends SalesPortalPage {
        await this.emailInput.fill(credentials.username);
        await this.passwordInput.fill(credentials.password);
     }
+
     async clickOnLoginButton(){
         this.loginButton.click();
     }
-
 }
