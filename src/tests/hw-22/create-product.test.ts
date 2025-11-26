@@ -9,7 +9,7 @@ import { test, expect } from "@playwright/test";
 import { credentials } from "config/env";
 import { HomePage } from "ui/pages/home.page";
 import { LoginPage } from "ui/pages/login.page";
-import { ProductsListPage } from "ui/pages/products/productList.page";
+import { ProductsListPage } from "ui/pages/products/productsList.page";
 import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { generateProductData } from "data/salesPortal/products/generateProductData";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
