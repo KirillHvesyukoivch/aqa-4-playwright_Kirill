@@ -22,21 +22,15 @@ test.describe("[API] [Sales Portal] [Login]", () => {
                 "content-type": "application/json",
             },
         });
-        const loginBody = await loginResponse.json();
-        expect.soft(loginResponse.status()).toBe(STATUS_CODES.OK);
-        expect.soft(loginBody.IsSuccess).toBe(true);
-        expect.soft(loginBody.ErrorMessage).toBe(null);
-        expect.soft(loginBody.User.username).toBe(credentials.username);
-
-        const headers = loginResponse.headers();
-        token = headers["authorization"]!;
-        expect(token).toBeTruthy();
-
-        await validateResponse(loginResponse, {
+        const loginResponseBody = await loginResponse.json();
+         await validateResponse(loginResponse, {
             status: STATUS_CODES.OK,
             schema: loginSchema,
             IsSuccess: true,
             ErrorMessage: null,
         });
+        const headers = loginResponse.headers();
+        token = headers["authorization"]!;
+        expect(token).toBeTruthy();
     });
   });
