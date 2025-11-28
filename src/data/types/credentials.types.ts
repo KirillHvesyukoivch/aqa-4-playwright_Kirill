@@ -1,4 +1,5 @@
 import { IResponseFields } from "./core.types";
+
 export interface ICredentials {
   username: string;
   password: string;
