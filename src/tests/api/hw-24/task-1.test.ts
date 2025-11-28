@@ -8,7 +8,7 @@ import { apiConfig } from "config/apiConfig";
 import { credentials } from "config/env";
 import { loginSchema } from "data/schemas/login.schema";
 import { STATUS_CODES } from "data/statusCodes";
-import { validateResponse } from "utils/validateResponse.utils";
+import { validateResponse } from "utils/validation/validateResponse.utils";
 
 const { baseURL, endpoints } = apiConfig;
 
