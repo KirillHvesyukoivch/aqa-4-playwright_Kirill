@@ -2,12 +2,15 @@ import { test, expect } from "fixtures/business.fixture";
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
 import { generateProductData } from "data/salesPortal/products/generateProductData";
 import _ from "lodash";
+import { TAGS } from "data/tags";
 
 test.describe("[Sales Portal] [Products]", () => {
   let id = "";
   let token = "";
   //test with fixtures version 1
-  test("Product Details", async ({ loginAsAdmin, homePage, productsListPage, addNewProductPage }) => {
+  test("Product Details", {
+        tag: [TAGS.SMOKE, TAGS.REGRESSION, TAGS.PRODUCTS, TAGS.UI],
+      }, async ({ loginAsAdmin, homePage, productsListPage, addNewProductPage,productsListUIService }) => {
     //login page
     // const emailInput = page.locator("#emailinput");
     // const passwordInput = page.locator("#passwordinput");
@@ -18,9 +21,8 @@ test.describe("[Sales Portal] [Products]", () => {
     // await passwordInput.fill(credentials.password);
     // await loginButton.click();
     // await homePage.waitForOpened();
-    await loginAsAdmin();
-    await homePage.clickOnViewModule("Products");
-    await productsListPage.waitForOpened();
+    await productsListUIService.open();
+    token = await productsListPage.getAuthToken();
     await productsListPage.clickAddNewProduct();
     await addNewProductPage.waitForOpened();
     const productData = generateProductData();
