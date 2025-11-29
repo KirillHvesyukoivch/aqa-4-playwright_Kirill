@@ -1,6 +1,7 @@
 import { IProductDetails } from "data/types/product.types";
 import { SalesPortalPage } from "../salesPortal.page";
 import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
+import { logStep } from "utils/report/logStep.utils";
 
 export class ProductDetailsModal extends SalesPortalPage {
     readonly uniqueElement = this.page.locator("#ProductDetailsModal");
@@ -12,14 +13,17 @@ export class ProductDetailsModal extends SalesPortalPage {
 
   readonly productValue = this.uniqueElement.locator("p");
 
+   @logStep("click close details")
   async clickClose() {
     await this.closeButton.click();
   }
 
+   @logStep("click cancel details")
   async clickCancel() {
     await this.cancelButton.click();
   }
 
+  @logStep("click edit product")
   async clickEdit() {
     await this.editButton.click();
   }

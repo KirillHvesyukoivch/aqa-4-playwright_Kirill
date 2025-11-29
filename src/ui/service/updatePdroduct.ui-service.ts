@@ -7,28 +7,22 @@ import _ from "lodash";
 import { AddNewProductPage, ProductsListPage } from "ui/pages/products";
 import { logStep } from "utils/report/logStep.utils";
 
-export class AddNewProductUIService {
-  addNewProductPage: AddNewProductPage;
+export class UpdateProductUIService {
+  updateProductPage: AddNewProductPage;
   productsListPage: ProductsListPage;
 
   constructor(private page: Page) {
-    this.addNewProductPage = new AddNewProductPage(page);
+    this.updateProductPage = new AddNewProductPage(page);
     this.productsListPage = new ProductsListPage(page);
   }
 
-  @logStep("open new product page")
-  async open() {
-    await this.addNewProductPage.open("products/add");
-    await this.addNewProductPage.waitForOpened();
-  }
-
-   @logStep("create product")
-  async create(productData?: Partial<IProduct>) {
+   @logStep("update product")
+  async update(productData?: Partial<IProduct>) {
     const data = generateProductData(productData);
-    await this.addNewProductPage.fillForm(data);
-    const response = await this.addNewProductPage.interceptResponse<IProductResponse, any>(
+    await this.updateProductPage.fillForm(data);
+    const response = await this.updateProductPage.interceptResponse<IProductResponse, any>(
       apiConfig.endpoints.products,
-      this.addNewProductPage.clickSave.bind(this.addNewProductPage),
+      this.updateProductPage.clickSave.bind(this.updateProductPage),
     );
     expect(response.status).toBe(STATUS_CODES.CREATED);
     expect(_.omit(response.body.Product, "_id", "createdOn")).toEqual(data);

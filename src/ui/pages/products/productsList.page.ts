@@ -3,6 +3,7 @@ import { SalesPortalPage } from "../salesPortal.page";
 import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
 import { ProductDetailsModal } from "./details.modal";
 import { ConfirmationModal } from "../confirmation.modal";
+import { logStep } from "utils/report/logStep.utils";
 
 export class ProductsListPage extends SalesPortalPage {
   readonly detailsModal = new ProductDetailsModal(this.page);
@@ -77,6 +78,7 @@ export class ProductsListPage extends SalesPortalPage {
     };
   }
 
+   @logStep("get table data")
   async getTableData(): Promise<IProductInTable[]> {
     const data: IProductInTable[] = [];
 
@@ -93,20 +95,24 @@ export class ProductsListPage extends SalesPortalPage {
     return data;
   }
 
+  @logStep("clicl action button")
   async clickAction(productName: string, button: "edit" | "delete" | "details") {
     if (button === "edit") await this.editButton(productName).click();
     if (button === "delete") await this.deleteButton(productName).click();
     if (button === "details") await this.detailsButton(productName).click();
   }
 
+  @logStep("clicl table header")
   async clickTableHeader(name: ProductsTableHeader) {
     await this.tableHeaderNamed(name).click();
   }
 
+  @logStep("fill search input")
   async fillSearchInput(text: string) {
     await this.searchInput.fill(text);
   }
 
+  @logStep("clcik search")
   async clickSearch() {
     await this.searchButton.click();
   }

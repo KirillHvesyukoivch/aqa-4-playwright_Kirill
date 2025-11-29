@@ -1,5 +1,6 @@
 import { IProduct } from "data/types/product.types";
 import { SalesPortalPage } from "../salesPortal.page";
+import { logStep } from "utils/report/logStep.utils";
 
 export class AddNewProductPage extends SalesPortalPage {
   readonly title = this.page.locator("h2.page-title-text");
@@ -13,6 +14,7 @@ export class AddNewProductPage extends SalesPortalPage {
 
   readonly uniqueElement = this.title;
 
+  @logStep("fill form with product data")
   async fillForm(productData: Partial<IProduct>) {
     if (productData.name) await this.nameInput.fill(productData.name);
     if (productData.manufacturer) await this.manufacturerSelect.selectOption(productData.manufacturer);
@@ -21,9 +23,12 @@ export class AddNewProductPage extends SalesPortalPage {
     if (productData.notes) await this.notesInput.fill(productData.notes);
   }
 
+  @logStep("click save new product")
   async clickSave() {
     await this.saveButton.click();
   }
+
+   @logStep("click save modified product")
   async clickSaveChanges(){
     await this.saveChangesButton.click();
   }

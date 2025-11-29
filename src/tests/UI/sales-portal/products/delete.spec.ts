@@ -1,19 +1,23 @@
 import { NOTIFICATIONS } from "data/salesPortal/notifications";
 import { STATUS_CODES } from "data/statusCodes";
+import { TAGS } from "data/tags";
 import { expect, test } from "fixtures/business.fixture";
 
 test.describe("[Sales Portal] [Products]", () => {
-  test("Delete", async ({
-    loginUIService,
+   let token = "";
+  test("Delete", {
+        tag: [TAGS.SMOKE, TAGS.REGRESSION, TAGS.PRODUCTS, TAGS.UI],
+      }, 
+  async ({
     productsListUIService,
-    homeUIService,
     productsApiService,
     productsListPage,
+    homePage,
     productsApi,
   }) => {
-    const token = await loginUIService.loginAsAdmin();
+    token = await productsListPage.getAuthToken();
     const createdProduct = await productsApiService.create(token);
-    await homeUIService.openModule("Products");
+    await productsListUIService.open();
     await productsListUIService.deleteProduct(createdProduct.name);
     const deleted = await productsApi.getById(createdProduct._id, token);
     expect(deleted.status).toBe(STATUS_CODES.NOT_FOUND);
