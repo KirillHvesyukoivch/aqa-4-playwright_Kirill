@@ -9,6 +9,7 @@ export class AddNewProductPage extends SalesPortalPage {
   readonly amountInput = this.page.locator("#inputAmount");
   readonly notesInput = this.page.locator("#textareaNotes");
   readonly saveButton = this.page.locator("#save-new-product");
+  readonly saveChangesButton = this.page.locator("#save-product-changes");
 
   readonly uniqueElement = this.title;
 
@@ -22,5 +23,8 @@ export class AddNewProductPage extends SalesPortalPage {
 
   async clickSave() {
     await this.saveButton.click();
+  }
+  async clickSaveChanges(){
+    await this.saveChangesButton.click();
   }
 }

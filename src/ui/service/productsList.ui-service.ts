@@ -8,15 +8,21 @@ import { convertToFullDateAndTime } from "utils/date.utils";
 export class ProductsListUIService {
   productsListPage: ProductsListPage;
   addNewProductPage: AddNewProductPage;
-
+  editProductPage: AddNewProductPage;
   constructor(private page: Page) {
     this.productsListPage = new ProductsListPage(page);
     this.addNewProductPage = new AddNewProductPage(page);
+    this.editProductPage = new AddNewProductPage(page);
   }
 
   async openAddNewProductPage() {
     await this.productsListPage.clickAddNewProduct();
     await this.addNewProductPage.waitForOpened();
+  }
+
+  async openEditProductPage(productName:string){
+    await this.productsListPage.editButton(productName).click();
+    await this.editProductPage.waitForOpened();
   }
 
   async openDetailsModal(productName: string) {
