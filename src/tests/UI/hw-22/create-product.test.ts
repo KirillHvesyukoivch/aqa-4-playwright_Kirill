@@ -23,7 +23,7 @@ import { NOTIFICATIONS } from "data/salesPortal/notifications";
 
         await loginPage.open();
         await loginPage.fillCredentials(credentials);
-        await loginPage.clickOnLoginButton();
+        await loginPage.clickLogin();
         await homePage.waitForOpened();
         await homePage.clickOnViewModule("Products");
         await productsListPage.waitForOpened();

@@ -1,10 +1,8 @@
 import { IProductDetails } from "data/types/product.types";
 import { SalesPortalPage } from "../salesPortal.page";
 import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
-import { DeleteModal } from "./delete.modal";
 
 export class ProductDetailsModal extends SalesPortalPage {
-    readonly deleteModal = new DeleteModal(this.page);
     readonly uniqueElement = this.page.locator("#ProductDetailsModal");
 
   readonly title = this.uniqueElement.locator("h5");
